@@ -68,29 +68,27 @@ export default function IndexPage() {
           Deployed into your cluster since: TODO DATE
         </p>
       </div>
-      <div className="flex gap-2">
-        <Table>
-          <TableCaption>A list of your recent invoices.</TableCaption>
-          <TableHeader>
-            <TableRow>
-              <TableHead className="w-[100px]">Invoice</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead>Method</TableHead>
-              <TableHead className="text-right">Amount</TableHead>
+      <Table>
+        <TableCaption>Deployed since DATE</TableCaption>
+        <TableHeader>
+          <TableRow>
+            <TableHead className="w-[100px]">Invoice</TableHead>
+            <TableHead>Status</TableHead>
+            <TableHead>Method</TableHead>
+            <TableHead className="text-right">Amount</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {invoices.map((invoice) => (
+            <TableRow key={invoice.invoice}>
+              <TableCell className="font-medium">{invoice.invoice}</TableCell>
+              <TableCell>{invoice.paymentStatus}</TableCell>
+              <TableCell>{invoice.paymentMethod}</TableCell>
+              <TableCell className="text-right">{invoice.totalAmount}</TableCell>
             </TableRow>
-          </TableHeader>
-          <TableBody>
-            {invoices.map((invoice) => (
-              <TableRow key={invoice.invoice}>
-                <TableCell className="font-medium">{invoice.invoice}</TableCell>
-                <TableCell>{invoice.paymentStatus}</TableCell>
-                <TableCell>{invoice.paymentMethod}</TableCell>
-                <TableCell className="text-right">{invoice.totalAmount}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </div>
+          ))}
+        </TableBody>
+      </Table>
       <div className="flex gap-4">
         <Link
           href={siteConfig.links.docs}
@@ -98,15 +96,7 @@ export default function IndexPage() {
           rel="noreferrer"
           className={buttonVariants({ size: "lg" })}
         >
-          Documentation
-        </Link>
-        <Link
-          target="_blank"
-          rel="noreferrer"
-          href={siteConfig.links.github}
-          className={buttonVariants({ variant: "outline", size: "lg" })}
-        >
-          GitHub
+          Purge
         </Link>
       </div>
     </section>
